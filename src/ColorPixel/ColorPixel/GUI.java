@@ -30,7 +30,7 @@ public class GUI {
         functionPanel.add(Pixel);
         functionPanel.add(Painting);
 
-        ImageIcon icon = new ImageIcon("Labirynt.png");
+        ImageIcon icon = new ImageIcon("Painting.png");
         Image image = icon.getImage();
         Image newimg = image.getScaledInstance(screenWidth, screenHeight, Image.SCALE_SMOOTH);
         icon = new ImageIcon(newimg);
@@ -48,7 +48,7 @@ public class GUI {
     public void refreshImage(JLabel label, int Columns, int Rows, int screenHeight, int screenWidth) {
         boolean flag = screenHeight < Rows || screenWidth < Columns;
 
-        ImageIcon icon = new ImageIcon( "Labirynt.png");
+        ImageIcon icon = new ImageIcon( "Painting.png");
         Image image = icon.getImage();
         Image newimg = flag ?
                 image.getScaledInstance(1365, 170, Image.SCALE_SMOOTH) :

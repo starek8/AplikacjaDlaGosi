@@ -13,6 +13,9 @@ public class Main {
             }
         }
 
-        new GUI(painting, Columns, Rows);
+        //new GUI(painting, Columns, Rows);
+
+
+
     }
 }
