@@ -3,11 +3,11 @@ package ColorPixel;
 import java.util.Random;
 
 public class RandomColor {
-    int randomNumber;
-    public void RandomGen(char[][] painting, int Columns, int Rows, int per, char color){
+    static int randomNumber;
+    public static void RandomGen(char[][] painting, int Columns, int Rows, int per, char color){
         Random random=new Random();
 
-        if(per == 5){
+        if(per == 50){
             randomNumber = random.nextInt(101);
             for(int i = 0; i < Rows; i++){
                 for(int j = 0; j < Columns; j++){
@@ -17,7 +17,7 @@ public class RandomColor {
                     }
                 }
             }
-        }else if(per == 10){
+        }else if(per == 25){
             randomNumber = random.nextInt(101);
             for(int i = 0; i < Rows; i++) {
                 for (int j = 0; j < Columns; j++) {
@@ -28,7 +28,7 @@ public class RandomColor {
                 }
             }
 
-        }else if(per == 25){
+        }else if(per == 10){
             randomNumber = random.nextInt(101);
                 for(int i = 0; i < Rows; i++) {
                     for (int j = 0; j < Columns; j++) {
@@ -39,7 +39,7 @@ public class RandomColor {
                     }
                 }
 
-        }else if(per == 50){
+        }else if(per == 5){
             randomNumber = random.nextInt(101);
             for(int i = 0; i < Rows; i++) {
                 for (int j = 0; j < Columns; j++) {

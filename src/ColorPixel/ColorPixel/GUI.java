@@ -7,9 +7,8 @@ import java.awt.event.ActionListener;
 
 public class GUI {
 
-    int gridColumns = 30;
-    int gridRows = 30;
-    int pixelSize = 20;
+
+    int pixelSize = 1;
     Toolkit toolkit = Toolkit.getDefaultToolkit();
     Dimension screenSize = toolkit.getScreenSize();
     int screenWidth = screenSize.width;
@@ -57,11 +56,5 @@ public class GUI {
         label.setIcon(icon);
 
     }
-    /*private void refreshButtons(JButton[][] buttons, int Columns, int Rows){
-        for (int i = 0; i < Rows; i++) {
-            for (int j = 0; j < Columns; j++){
 
-            }
-
-    }*/
 }
