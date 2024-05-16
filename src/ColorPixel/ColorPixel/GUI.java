@@ -7,9 +7,8 @@ import java.awt.event.ActionListener;
 
 public class GUI {
 
-    int gridColumns = 30;
-    int gridRows = 30;
-    int pixelSize = 20;
+
+    int pixelSize = 1;
     Toolkit toolkit = Toolkit.getDefaultToolkit();
     Dimension screenSize = toolkit.getScreenSize();
     int screenWidth = screenSize.width;
@@ -30,7 +29,7 @@ public class GUI {
         functionPanel.add(Pixel);
         functionPanel.add(Painting);
 
-        ImageIcon icon = new ImageIcon("Labirynt.png");
+        ImageIcon icon = new ImageIcon("Painting.png");
         Image image = icon.getImage();
         Image newimg = image.getScaledInstance(screenWidth, screenHeight, Image.SCALE_SMOOTH);
         icon = new ImageIcon(newimg);
@@ -48,7 +47,7 @@ public class GUI {
     public void refreshImage(JLabel label, int Columns, int Rows, int screenHeight, int screenWidth) {
         boolean flag = screenHeight < Rows || screenWidth < Columns;
 
-        ImageIcon icon = new ImageIcon( "Labirynt.png");
+        ImageIcon icon = new ImageIcon( "Painting.png");
         Image image = icon.getImage();
         Image newimg = flag ?
                 image.getScaledInstance(1365, 170, Image.SCALE_SMOOTH) :
@@ -57,11 +56,5 @@ public class GUI {
         label.setIcon(icon);
 
     }
-    /*private void refreshButtons(JButton[][] buttons, int Columns, int Rows){
-        for (int i = 0; i < Rows; i++) {
-            for (int j = 0; j < Columns; j++){
 
-            }
-
-    }*/
 }

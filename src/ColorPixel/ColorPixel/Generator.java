@@ -13,6 +13,18 @@ public class Generator {
             for (int j = 0; j < Columns; j++) {
                 if (painting[j][i] == 'B') {
                     image.setRGB(j, i, Color.BLACK.getRGB());
+                }else if (painting[j][i] == 'W') {
+                    image.setRGB(j, i, Color.WHITE.getRGB());
+                }else if (painting[j][i] == 'R') {
+                    image.setRGB(j, i, Color.RED.getRGB());
+                }else if (painting[j][i] == 'G') {
+                    image.setRGB(j, i, Color.GREEN.getRGB());
+                }else if (painting[j][i] == 'B') {
+                    image.setRGB(j, i, Color.BLUE.getRGB());
+                }else if (painting[j][i] == 'O') {
+                    image.setRGB(j, i, Color.ORANGE.getRGB());
+                }else{
+                    System.out.println("Wrong color in char[][]");
                 }
             }
         }
