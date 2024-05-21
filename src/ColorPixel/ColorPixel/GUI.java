@@ -15,12 +15,15 @@ public class GUI {
     int screenHeight = screenSize.height - 70;
 
     public GUI(char[][] painting, int Columns, int Rows){
+
+
+
         JFrame frame = new JFrame("ColorPixel");
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel functionPanel = new JPanel();
-        JPanel buttonsPanel = new JPanel();
+
 
         JButton Pixel = new JButton("Pixel");
         frame.add(Pixel, BorderLayout.EAST);
@@ -36,6 +39,16 @@ public class GUI {
 
         JLabel label = new JLabel(icon);
         frame.add(label, BorderLayout.CENTER);
+
+        if (screenWidth / Columns < screenHeight / Rows) {
+            pixelSize = screenWidth / Columns;
+        } else {
+            pixelSize = screenHeight / Rows;
+        }
+
+        if (pixelSize == 0){
+            pixelSize = 1;
+        }
 
         Generator.generateImage(painting, Columns, Rows);
         refreshImage(label,Columns, Rows, screenWidth, screenHeight);
