@@ -1,16 +1,11 @@
 package ColorPixel;
 
-
-import java.io.File;
-
 public class Main {
     public static void main(String[] args) {
 
-        /*RandomColor.RandomGen(painting, Columns, Rows, 1,'W');
-        RandomColor.RandomGen(painting, Columns, Rows, 10,'R');
-        Generator.generateOneColor(painting, Columns, Rows, 'W');*/
-
         new GUI();
+
+        Generator.P.deleteOnExit();
 
     }
 }

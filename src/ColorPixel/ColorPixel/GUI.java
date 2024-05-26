@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Random;
 
 public class GUI {
 
@@ -98,12 +97,16 @@ public class GUI {
         JButton Generate = new JButton("Generate");
         frame.add(Generate, BorderLayout.EAST);
 
+        JButton GenerateOneColor = new JButton("Generate one color");
+        frame.add(GenerateOneColor, BorderLayout.EAST);
+
         functionPanel.add(Color);
         functionPanel.add(ColorPlace);
         functionPanel.add(Percent);
         functionPanel.add(PercentPlace);
         functionPanel.add(AddColor);
         functionPanel.add(Generate);
+        functionPanel.add(GenerateOneColor);
 
         ImageIcon icon = new ImageIcon("Painting.png");
         Image image = icon.getImage();
@@ -138,12 +141,31 @@ public class GUI {
                 }
 
                 RandomColor.RandomGen(painting, Columns, Rows, percent, color);
+                Generator.generateImage(painting, Columns, Rows);
+                refreshImage(label,Columns, Rows, screenWidth, screenHeight);
+            }
+        });
+
+        GenerateOneColor.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Generator.generateOneColor(painting,Columns,Rows,'B');
+                Generator.generateOneColor(painting,Columns,Rows,'W');
+                Generator.generateOneColor(painting,Columns,Rows,'b');
+                Generator.generateOneColor(painting,Columns,Rows,'O');
+                Generator.generateOneColor(painting,Columns,Rows,'R');
+                Generator.generateOneColor(painting,Columns,Rows,'G');
             }
         });
 
         frame.add(functionPanel, BorderLayout.NORTH);
 
+
+
+
     }
+
+
+
     public void refreshImage(JLabel label, int Columns, int Rows, int screenHeight, int screenWidth) {
         boolean flag = screenHeight < Rows || screenWidth < Columns;
 

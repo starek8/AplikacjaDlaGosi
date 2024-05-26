@@ -6,8 +6,12 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 public class Generator {
+
+    public static File P = new File("Painting.png");
+
     public static void generateImage(char[][] painting, int Columns, int Rows) {
         BufferedImage image = new BufferedImage(Columns, Rows, BufferedImage.TYPE_INT_RGB);
+
 
         for (int i = 0; i < Rows; i++) {
             for (int j = 0; j < Columns; j++) {
@@ -30,7 +34,7 @@ public class Generator {
         }
 
         try {
-            ImageIO.write(image, "png", new File("Painting.png"));
+            ImageIO.write(image, "png", P);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -41,6 +45,7 @@ public class Generator {
         String filename = "Painting";
 
         filename = filename + color + ".png";
+
 
         BufferedImage image = new BufferedImage(Columns, Rows, BufferedImage.TYPE_INT_RGB);
         for (int i = 0; i < Rows; i++) {
