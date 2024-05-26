@@ -15,6 +15,8 @@ public class GUI {
     int screenHeight = screenSize.height - 70;
     int Columns = 10;
     int Rows = 10;
+    char painting[][];
+    char color;
 
     public GUI(){
 
@@ -48,23 +50,39 @@ public class GUI {
 
         confirm.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                try{
+                    String tmp = yAxisPlace.getText();
+                    Columns = Integer.parseInt(tmp);
+                    tmp = xAxisPlace.getText();
+                    Rows = Integer.parseInt(tmp);
 
-                String tmp = yAxisPlace.getText();
-                Columns = Integer.parseInt(tmp);
-                tmp = xAxisPlace.getText();
-                Rows = Integer.parseInt(tmp);
+                }catch (NumberFormatException ex){
+                    Columns = 100;
+                    Rows = 100;
+                }
+
+                painting = new char[Columns][Rows];
+
+                for (int i = 0; i < Rows; i++) {
+                    for (int j = 0; j < Columns; j++) {
+                        painting[j][i] = 'B';  //Black filling
+                    }
+                }
+
+                if (screenWidth / Columns < screenHeight / Rows) {
+                    pixelSize = screenWidth / Columns;
+                } else {
+                    pixelSize = screenHeight / Rows;
+                }
+
+                if (pixelSize == 0){
+                    pixelSize = 1;
+                }
 
                 frame.setVisible(true);
+                frame2.setVisible(false);
             }
         });
-
-        char[][] painting = new char[Columns][Rows];
-
-        for (int i = 0; i < Rows; i++) {
-            for (int j = 0; j < Columns; j++) {
-                painting[j][i] = 'B';  //Black filling
-            }
-        }
 
         JPanel functionPanel = new JPanel();
 
@@ -73,14 +91,22 @@ public class GUI {
         final JTextField ColorPlace= new JTextField(20);
         final JTextField PercentPlace = new JTextField(20);
 
+        JButton AddColor = new JButton("Add Color");
+        frame.add(AddColor, BorderLayout.EAST);
+
         JButton Generate = new JButton("Generate");
         frame.add(Generate, BorderLayout.EAST);
+
+        JButton GenerateOneColor = new JButton("Generate one color");
+        frame.add(GenerateOneColor, BorderLayout.EAST);
 
         functionPanel.add(Color);
         functionPanel.add(ColorPlace);
         functionPanel.add(Percent);
         functionPanel.add(PercentPlace);
+        functionPanel.add(AddColor);
         functionPanel.add(Generate);
+        functionPanel.add(GenerateOneColor);
 
         ImageIcon icon = new ImageIcon("Painting.png");
         Image image = icon.getImage();
@@ -90,22 +116,56 @@ public class GUI {
         JLabel label = new JLabel(icon);
         frame.add(label, BorderLayout.CENTER);
 
-        if (screenWidth / Columns < screenHeight / Rows) {
-            pixelSize = screenWidth / Columns;
-        } else {
-            pixelSize = screenHeight / Rows;
-        }
 
-        if (pixelSize == 0){
-            pixelSize = 1;
-        }
+        Generate.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
 
-        Generator.generateImage(painting, Columns, Rows);
-        refreshImage(label,Columns, Rows, screenWidth, screenHeight);
+                Generator.generateImage(painting, Columns, Rows);
+                refreshImage(label,Columns, Rows, screenWidth, screenHeight);
+
+            }
+        });
+
+
+        AddColor.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String tmp;
+                int percent = 0;
+                try{
+                    tmp = ColorPlace.getText();
+                    color = tmp.charAt(0);
+                    tmp = PercentPlace.getText();
+                    percent = Integer.parseInt(tmp);
+                }catch(NumberFormatException ex){
+
+                }
+
+                RandomColor.RandomGen(painting, Columns, Rows, percent, color);
+                Generator.generateImage(painting, Columns, Rows);
+                refreshImage(label,Columns, Rows, screenWidth, screenHeight);
+            }
+        });
+
+        GenerateOneColor.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Generator.generateOneColor(painting,Columns,Rows,'B');
+                Generator.generateOneColor(painting,Columns,Rows,'W');
+                Generator.generateOneColor(painting,Columns,Rows,'b');
+                Generator.generateOneColor(painting,Columns,Rows,'O');
+                Generator.generateOneColor(painting,Columns,Rows,'R');
+                Generator.generateOneColor(painting,Columns,Rows,'G');
+            }
+        });
 
         frame.add(functionPanel, BorderLayout.NORTH);
 
+
+
+
     }
+
+
+
     public void refreshImage(JLabel label, int Columns, int Rows, int screenHeight, int screenWidth) {
         boolean flag = screenHeight < Rows || screenWidth < Columns;
 
